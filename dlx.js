@@ -107,6 +107,32 @@ var dlx = (function() {
 		this.cols = [];
 	};
 
+	LinkedMatrix.prototype.cover_column = function(col) {
+		if (typeof col === 'number') {
+			col = this.cols[col];
+		}
+		col.hide_lr();
+		for (var row = col.d; row !== col; row = row.d) {
+			for (var node = row.r; node !== row; node = node.r) {
+				node.hide_ud();
+				--this.cols[node.x].size;
+			}
+		}
+	};
+
+	LinkedMatrix.prototype.uncover_column = function(col) {
+		if (typeof col === 'number') {
+			col = this.cols[col];
+		}
+		col.show_lr();
+		for (var row = col.u; row !== col; row = row.u) {
+			for (var node = row.l; node !== row; node = node.l) {
+				node.show_ud();
+				++this.cols[node.x].size;
+			}
+		}
+	};
+
 	LinkedMatrix.prototype.to_sparse = function() {
 		var sparse = [];
 		var put = function(x, y) {
@@ -157,7 +183,45 @@ var dlx = (function() {
 		return LinkedMatrix.from_sparse(dense_to_sparse(dense));
 	};
 
+	var solve = function(lm, stack, solutions) {
+		if (lm == null) {
+			return [];
+		}
+		if (arguments.length === 1) {
+			return solve(lm, [], []);
+		}
+		if (lm.root.r === lm.root) {
+			solutions.push([].concat(stack));
+			return solutions;
+		}
+
+		var best_col = lm.root.r;
+		for (var col = best_col.r; col !== lm.root; col = col.r) {
+			if (col.size < best_col) {
+				best_col = col;
+			}
+		}
+		if (best_col.size < 1) {
+			return solutions;
+		}
+		lm.cover_column(best_col);
+		for (var row = best_col.d; row !== best_col; row = row.d) {
+			stack.push(row.y);
+			for (var node = row.r; node !== row; node = node.r) {
+				lm.cover_column(node.x);
+			}
+			solve(lm, stack, solutions);
+			for (var node = row.l; node !== row; node = node.l) {
+				lm.uncover_column(node.x);
+			}
+			stack.pop();
+		}
+		lm.uncover_column(best_col);
+		return solutions;
+	};
+
 	return {
+		'solve': solve,
 		'LinkedMatrix': LinkedMatrix,
 		'dense_to_sparse': dense_to_sparse,
 		'sparse_to_dense': sparse_to_dense
