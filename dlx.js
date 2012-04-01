@@ -1,5 +1,21 @@
 var dlx = (function() {
+	var representable_as_sparse = function(dense) {
+		var max = [-1, -1];
+		for (var y = 0; y < dense.length; ++y) {
+			for (var x = 0; x < dense[y].length; ++x) {
+				var bit = +!!dense[y][x];
+				if (x > max[bit]) {
+					max[bit] = x;
+				}
+			}
+		}
+		return max[1] >= max[0];
+	};
+
 	var dense_to_sparse = function(dense) {
+		if (!representable_as_sparse(dense)) {
+			return null;
+		}
 		var sparse = [];
 		for (var y = 0; y < dense.length; ++y) {
 			var xs = [];
@@ -111,6 +127,9 @@ var dlx = (function() {
 	};
 
 	LinkedMatrix.from_sparse = function(sparse) {
+		if (sparse == null) {
+			return null;
+		}
 		var lm = new LinkedMatrix();
 		var col = function(x) {
 			while (lm.cols.length <= x) {

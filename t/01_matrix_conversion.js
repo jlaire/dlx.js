@@ -2,7 +2,7 @@ var tap = require("tap");
 var dlx = require("../dlx");
 
 tap.test("conversion between dense and sparse matrices", function(t) {
-	t.plan(4);
+	t.plan(5);
 
 	var F = false;
 	var T = true;
@@ -26,5 +26,6 @@ tap.test("conversion between dense and sparse matrices", function(t) {
 	t.deepEqual(dlx.dense_to_sparse(dense), sparse, "dense_to_sparse: Knuth's example");
 	t.deepEqual(dlx.sparse_to_dense([]), [], "sparse_to_dense: empty matrix");
 	t.deepEqual(dlx.sparse_to_dense(sparse), dense, "sparse_to_dense: Knuth's example");
+	t.equal(dlx.dense_to_sparse([[F]]), null, "dense_to_sparse: all-zeros rightmost col");
 	t.end();
 });
