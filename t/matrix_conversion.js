@@ -1,7 +1,7 @@
-var test = require("tap").test;
+var tap = require("tap");
 var dlx = require("../dlx");
 
-test("conversion between dense and sparse matrices", function(t) {
+tap.test("conversion between dense and sparse matrices", function(t) {
 	t.plan(7);
 
 	var F = false;
