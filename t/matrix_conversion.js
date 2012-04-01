@@ -1,8 +1,6 @@
 var test = require("tap").test;
 var dlx = require("../dlx");
 
-console.log(Object.keys(dlx));
-
 test("conversion between dense and sparse matrices", function(t) {
 	t.plan(7);
 
