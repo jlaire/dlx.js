@@ -2,7 +2,7 @@
 	"name": "dlx",
 	"version": "0.1.0",
 	"author": "Johannes Laire <johannes@laire.fi>",
-	"description": "an implementation of Knuth's DLX algorithm for solving exact cover problems",
+	"description": "Knuth's Dancing Links algorithm for the exact cover problem",
 	"license": "MIT",
 	"homepage": "https://github.com/jlaire/dlx.js",
 	"repository": {
