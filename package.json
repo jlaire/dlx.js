@@ -1,0 +1,27 @@
+{
+	"name": "dlx",
+	"version": "0.1.0",
+	"author": "Johannes Laire <johannes@laire.fi>",
+	"description": "an implementation of Knuth's DLX algorithm for solving exact cover problems",
+	"license": "MIT",
+	"homepage": "https://github.com/jlaire/dlx.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jlaire/dlx.js"
+	},
+	"keywords": [
+		"dancing links",
+		"dlx",
+		"exact cover",
+		"algorithm"
+	],
+	"dependencies": {
+		"underscore": "*"
+	},
+	"devDependencies": {
+		"tap": "*"
+	},
+	"scripts": {
+		"test": "node node_modules/.bin/tap ./t"
+	}
+}
