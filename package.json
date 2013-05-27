@@ -19,9 +19,9 @@
 		"underscore": "*"
 	},
 	"devDependencies": {
-		"tap": "*"
+		"jasmine-node": "*"
 	},
 	"scripts": {
-		"test": "node node_modules/.bin/tap ./t"
+		"test": "jasmine-node spec"
 	}
 }
