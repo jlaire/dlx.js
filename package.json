@@ -16,7 +16,6 @@
 		"algorithm"
 	],
 	"dependencies": {
-		"underscore": "*"
 	},
 	"devDependencies": {
 		"jasmine-node": "*"
