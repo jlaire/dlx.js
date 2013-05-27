@@ -23,6 +23,16 @@ describe("dlx", function () {
 			var dense = [[0,0,1],[0,1,0],[0,1,1],[1,0,0],[1,0,1],[1,1,0],[1,1,1]];
 			expect(dlx.solve(dense).length).toEqual(5);
 		});
+
+		it("returns sorted solutions", function () {
+			var dense = [[0,1],[1,0]];
+			expect(dlx.solve(dense)).toEqual([[0,1]]);
+		});
+
+		it("sorts the solutions", function () {
+			var dense = [[0,1],[1,1],[1,0]];
+			expect(dlx.solve(dense)).toEqual([[0,2],[1]]);
+		});
 	});
 
 	describe("dlx.solve_sparse_matrix", function () {
