@@ -5,6 +5,7 @@ describe("dlx", function () {
 		expect(dlx).toBeTruthy();
 		expect(dlx.solve).toBeTruthy();
 		expect(dlx.solve_sparse_matrix).toBeTruthy();
+		expect(dlx.solve_tagged_matrix).toBeTruthy();
 	})
 	
 	describe("dlx.solve()", function () {
@@ -35,12 +36,28 @@ describe("dlx", function () {
 		});
 	});
 
-	describe("dlx.solve_sparse_matrix", function () {
+	describe("dlx.solve_sparse_matrix()", function () {
 		it("works in simple cases", function () {
 			expect(dlx.solve_sparse_matrix([])).toEqual([[]]);
 			expect(dlx.solve_sparse_matrix([[0]])).toEqual([[0]]);
 			expect(dlx.solve_sparse_matrix([[1]])).toEqual([]);
 			expect(dlx.solve_sparse_matrix([[0],[1]])).toEqual([[0,1]]);
+		});
+	});
+
+	describe("dlx.solve_tagged_matrix()", function () {
+		it("works", function () {
+			var tagged_matrix = {
+				"row1": ["col1", "col2"],
+				"row2": ["col1", "col3"],
+				"row3": ["col3"],
+				"all": ["col1", "col2", "col3"]
+			};
+
+			expect(dlx.solve_tagged_matrix(tagged_matrix)).toEqual([
+				["row1", "row3"],
+				["all"]
+			]);
 		});
 	});
 });

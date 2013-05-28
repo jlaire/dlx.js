@@ -1,6 +1,6 @@
 {
 	"name": "dlx",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"author": "Johannes Laire <johannes@laire.fi>",
 	"description": "Knuth's Dancing Links algorithm for the exact cover problem",
 	"license": "MIT",
