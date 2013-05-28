@@ -35,3 +35,4 @@ See more:
 
 - [Dancing Links on Wikipedia](http://en.wikipedia.org/wiki/Dancing_Links)
 - [Knuth's paper (PDF)](http://arxiv.org/pdf/cs.DS/0011047.pdf)
+- [dlx-examples](https://github.com/jlaire/dlx-examples)
